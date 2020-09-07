@@ -1,3 +1,5 @@
 from django.contrib import admin
+from main.models import DayInfo, EventInfo
 
-# Register your models here.
+admin.site.register(DayInfo)
+admin.site.register(EventInfo)

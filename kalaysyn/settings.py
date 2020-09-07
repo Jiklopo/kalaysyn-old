@@ -1,23 +1,11 @@
+import os
 import django_heroku
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'cw9ajc50dr9tm(57s!dihzuvz5g5fqgf)v7d*)01v^xdzlsto_'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+SECRET_KEY = os.getenv('SECRET_KEY') or 'super_secretno'
+DEBUG = os.getenv('ENV') != 'HEROKU'
 ALLOWED_HOSTS = []
-
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -26,6 +14,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'main'
 ]
 
 MIDDLEWARE = [
@@ -59,15 +49,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'kalaysyn.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'kalaysyn',
+        'USER': 'jiklopo',
+        'PASSWORD': 'kartop',
+        'HOST': '0.0.0.0',
+        'PORT': 5432
+}
 }
 
 
