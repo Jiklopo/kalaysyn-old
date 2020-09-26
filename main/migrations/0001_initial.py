@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('description', models.TextField(blank=True, max_length=300, null=True)),
                 ('emotions', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(choices=[('FR', 'Fear'), ('AR', 'Anger'), ('SD', 'Sadness'), ('JY', 'Joy'), ('DG', 'Disgust'), ('SP', 'Surprise'), ('TR', 'Trust'), ('AP', 'Anticipation')], max_length=30), blank=True, null=True, size=None)),
                 ('is_hungry', models.BooleanField()),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('auth', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
@@ -43,11 +43,11 @@ class Migration(migrations.Migration):
                 ('appetite_rate', models.IntegerField(blank=True, null=True, validators=[main.models.validate_rating_value])),
                 ('meals_eaten', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=50), blank=True, null=True, size=None)),
                 ('communication_rate', models.IntegerField(blank=True, null=True, validators=[main.models.validate_rating_value])),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('auth', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.AddConstraint(
             model_name='dayinfo',
-            constraint=models.UniqueConstraint(fields=('user', 'date'), name='unique_user_date'),
+            constraint=models.UniqueConstraint(fields=('auth', 'date'), name='unique_user_date'),
         ),
     ]

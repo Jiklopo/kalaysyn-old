@@ -1,6 +1,7 @@
 import os
-import django_heroku
 from pathlib import Path
+
+import django_heroku
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY') or 'super_secretno'
@@ -57,9 +58,8 @@ DATABASES = {
         'PASSWORD': 'kartop',
         'HOST': '0.0.0.0',
         'PORT': 5432
+    }
 }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -79,7 +79,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -92,7 +91,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
