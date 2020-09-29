@@ -1,4 +1,24 @@
 {% extends "base.html" %}
 {% block body %}
-    <h1>Calendar</h1>
+    <div id="days">
+        {% if days %}
+            <h1>Days Information</h1>
+            <ul>
+                {% for day in days %}
+                    <li><a href="{% url 'day-details' day.id %}">{{ day.date }}</a> - {{ day.rating }}/10</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+    <div id="events">
+        {% if events %}
+            <h1>Event Information</h1>
+            <ul>
+                {% for event in events %}
+                    <li><a href="{% url 'event-details' event.id %}">{{ event.name }}</a> - {{ event.rating }}/10</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
 {% endblock %}

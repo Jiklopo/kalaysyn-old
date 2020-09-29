@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import TemplateView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -14,6 +15,12 @@ class IndexView(TemplateView):
 
 class CalendarView(LoginRequiredMixin, TemplateView):
     template_name = 'calendar.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['events'] = EventInfo.objects.filter(user=self.request.user)
+        context['days'] = DayInfo.objects.filter(user=self.request.user)
+        return context
 
 
 class UserRegisterView(CreateView):
@@ -44,6 +51,13 @@ class EventView(LoginRequiredMixin, DetailView):
 class EventCreateView(LoginRequiredMixin, CreateView):
     form_class = EventForm
     template_name = 'events/form.html'
+    success_url = reverse_lazy('calendar')
+
+    def form_valid(self, form):
+        event = form.save(commit=False)
+        event.user = self.request.user
+        event.save()
+        return HttpResponseRedirect(self.success_url)
 
 
 class EventUpdateView(LoginRequiredMixin, UpdateView):
@@ -69,6 +83,13 @@ class DayInfoView(LoginRequiredMixin, DetailView):
 class DayInfoCreateView(LoginRequiredMixin, CreateView):
     form_class = DayInfoForm
     template_name = 'day_info/form.html'
+    success_url = reverse_lazy('calendar')
+
+    def form_valid(self, form):
+        day = form.save(commit=False)
+        day.user = self.request.user
+        day.save()
+        return HttpResponseRedirect(self.success_url)
 
 
 class DayInfoUpdateView(LoginRequiredMixin, UpdateView):

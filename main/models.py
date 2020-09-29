@@ -41,7 +41,7 @@ class DayInfo(models.Model):
 
 class EventInfo(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, null=False, blank=False)
     datetime = models.DateTimeField()
     rating = models.IntegerField(validators=[validate_rating_value])
     description = models.TextField(max_length=300, blank=True, null=True)

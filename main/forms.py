@@ -6,7 +6,7 @@ from main import models
 class EventForm(ModelForm):
     class Meta:
         model = models.EventInfo
-        fields = ['datetime', 'rating', 'description', 'emotions', 'is_hungry']
+        fields = ['datetime', 'name', 'rating', 'description', 'emotions', 'is_hungry']
 
 
 class DayInfoForm(ModelForm):
