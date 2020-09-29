@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block body %}
+    {% if object %}
+        <h1>Delete Day Information?</h1>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">DA!</button>
+            <button><a href={% url 'day-details' object.id %}>NET!</a></button>
+        </form>
+    {% endif %}
+{% endblock %}

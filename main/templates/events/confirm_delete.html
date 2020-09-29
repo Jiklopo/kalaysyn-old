@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block body %}
+    {% if object %}
+        <h1>Che vnature snesti?</h1>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Vnature!</button>
+            <button><a href={% url 'event-details' object.id %}>Ne, roflyu!</a></button>
+        </form>
+    {% endif %}
+{% endblock %}

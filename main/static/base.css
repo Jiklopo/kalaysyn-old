@@ -1,0 +1,36 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, sans-serif;
+    min-height: 100vh;
+}
+
+header, footer {
+    width: 100vw;
+}
+
+header {
+}
+
+#links {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+#username {
+    padding: 0 10px;
+}
+
+main {
+    width: 60vw;
+    margin: auto;
+}
+
+footer {
+    font-size: 10px;
+    text-align: center;
+    bottom: 0;
+}

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block body %}
+    {% if object %}
+        <h1>{{ object.name }} - {{ object.rating }}/10</h1>
+        <button><a href="{% url 'event-update' object.id %}">Update</a></button>
+        <button><a href="{% url 'event-delete' object.id %}">Delete</a></button>
+    {% endif %}
+{% endblock %}
