@@ -8,6 +8,8 @@ urlpatterns = [
 
     path('login', UserLoginView.as_view(), name='login'),
     path('logout', UserLogoutView.as_view(), name='logout'),
+    path('register', UserRegisterView.as_view(), name='register'),
+    path('change_password', UserPasswordChangeView.as_view(), name='change_password'),
 
     path('events/<int:pk>', EventView.as_view(), name='event-details'),
     path('events/new', EventCreateView.as_view(), name='event-new'),
