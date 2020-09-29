@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Kalaysyn</title>
+    <title>{% block title %}Kalaysyn{% endblock %}</title>
+    {% block head %}{% endblock %}
 </head>
 <body>
-    {% block body %}
-    
-    {% endblock %}
+    {% block body %}{% endblock %}
 </body>
 </html>

@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 
 import django_heroku
+from django.urls import reverse_lazy
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY') or 'super_secretno'
@@ -96,4 +97,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+LOGIN_REDIRECT_URL = reverse_lazy('index')
 django_heroku.settings(locals())
