@@ -2,6 +2,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import TemplateView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -27,6 +28,11 @@ class UserRegisterView(CreateView):
     form_class = UserCreationForm
     template_name = 'auth/register.html'
     success_url = reverse_lazy('calendar')
+
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect(reverse('index'))
+        return super().get(self.request)
 
 
 class UserLogoutView(LoginRequiredMixin, LogoutView):
